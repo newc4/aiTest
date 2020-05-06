@@ -31,14 +31,15 @@ class Logger():
     def print(self, round, message):
         print(str(round) + ' ' + str(message))
 
+
 class SeaWarEnv(MultiAgentEnv):
     """The SeaWar environment for multi-agent micromanagement scenarios.
     """
 
     def __init__(
-        self,
-        debug=False,
-        camp=1
+            self,
+            debug=False,
+            camp=1
     ):
         self.debug = debug
         self.queue = Queue(1)
@@ -173,7 +174,7 @@ class SeaWarEnv(MultiAgentEnv):
                 for _ in range(our_operator.move[our_operator.state]):
                     x, y = self.get_next_position(x, y, Direction(action - 2))
                     if self.check_bounds(x, y):
-                        our_operator_path.append(str(x)+','+str(y))
+                        our_operator_path.append(str(x) + ',' + str(y))
                         pass
                     else:
                         break
@@ -185,7 +186,8 @@ class SeaWarEnv(MultiAgentEnv):
             attack_list = []
             if self.n_actions_no_attack <= action < self.n_actions_no_attack + self.n_enemies:
                 attack_list = [{"act_id": 1, "type": 502, "routes": [], "fp_operator_id": "",
-                                "src_id": [str(our_operator_id)], "target_id": [str(self.n_enemies_id[action - self.n_actions_no_attack])],
+                                "src_id": [str(our_operator_id)],
+                                "target_id": [str(self.n_enemies_id[action - self.n_actions_no_attack])],
                                 "aggressivity": str(30), "ammunition_num": 1,
                                 "rounds": self._round, "is_suicide_attack": 0,
                                 "support_operator_id": "", "land_position": "", "land_value": 0}]
@@ -247,7 +249,6 @@ class SeaWarEnv(MultiAgentEnv):
                         )
                         if dist <= shoot_range:
                             avail_actions[i + self.n_actions_no_attack] = 1
-
 
             return avail_actions
 

@@ -2,15 +2,16 @@ from env import SeaWarEnv
 import numpy as np
 import argparse
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--camp', type=int, default=1, help='None')
     args = parser.parse_args()
 
-    if (args.camp == 1):
-        env = SeaWarEnv(camp = 1)
-    elif (args.camp == 2):
-        env = SeaWarEnv(camp = 2)
+    if args.camp == 1:
+        env = SeaWarEnv(camp=1)
+    elif args.camp == 2:
+        env = SeaWarEnv(camp=2)
     else:
         raise NotImplementedError
 
@@ -24,7 +25,7 @@ def main():
         terminated = False
         while not terminated:
             terminated = env.wait_attack_interval()
-            if terminated == True:
+            if terminated is True:
                 break
             else:
                 actions = []
@@ -37,6 +38,7 @@ def main():
 
                     actions.append(action)
                 env.step(actions)
+
 
 if __name__ == "__main__":
     main()
